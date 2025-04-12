@@ -1,0 +1,45 @@
+
+*{
+    background-color: #deeefd;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    max-width: 800px;
+    padding: 10px;
+}
+#task-form {
+    display: flex;
+    margin-bottom: 10px;
+}
+#task-input {
+    flex-grow: 1;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+button {
+    padding: auto auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #0f6ac0;
+    color: #ffffff;
+    width: 17%;
+    cursor: pointer;
+    font-weight: bold;
+    height: 35px;
+    border-radius: 5px;
+    margin-left: 7px;
+
+  }
+    
+.task.completed {
+    text-decoration: line-through;
+    color: #000000;
+}
+.task-actions {
+    margin-left: auto auto;
+}
+.concluida {
+    text-decoration: line-through;
+    color: gray;
+  }
