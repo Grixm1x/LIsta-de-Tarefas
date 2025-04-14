@@ -1,66 +1,37 @@
-let tarefas = [];
+function botaoParaTarefa() {
+  let listaTarefas = document.getElementById("listaTarefas");
+  let inputText = document.getElementById("inputText");
+  let mensagem = "Tarefa adicionada com sucesso!";
+  let novaTarefa; 
 
-document.getElementById("task-form").addEventListener("submit", function (event) {
-  event.preventDefault();
-  adicionarTarefa();
-});
+  if (inputText && inputText.value.trim() !== "") {
+    let valueText = inputText.value;
 
-function adicionarTarefa() {
-  const input = document.getElementById("task-input");
-  const texto = input.value.trim();
+    document.getElementById("mensagem").textContent = mensagem;
 
-  if (texto !== "") {
-    tarefas.push({ texto: texto, concluida: false });
-    input.value = "";
-    mostrarTarefas();
+    novaTarefa = document.createElement("li");
+    novaTarefa.textContent = valueText;
+
+    let botaoExcluir = document.createElement("button");
+    botaoExcluir.textContent = "Excluir";
+    botaoExcluir.style.marginLeft = "10px";
+    botaoExcluir.style.backgroundColor = "red";
+    botaoExcluir.style.color = "white";
+    botaoExcluir.style.border = "none";
+    botaoExcluir.style.borderRadius = "5px";
+    botaoExcluir.style.marginLeft= "80%";
+
+    
+    botaoExcluir.onclick = function () {
+      listaTarefas.removeChild(novaTarefa);
+    };
+
+    novaTarefa.appendChild(botaoExcluir);
+
+    listaTarefas.appendChild(novaTarefa);
+
+    inputText.value = "";
+  } else {
+    alert("Não foi possível adicionar uma tarefa vazia.");
   }
-}
-
-function mostrarTarefas() {
-  const lista = document.getElementById("lista-tarefas");
-  lista.innerHTML = "";
-
-  tarefas.forEach((tarefa, index) => {
-    const item = document.createElement("li");
-    item.textContent = tarefa.texto;
-
-    // Botão de Concluir
-    const botaoConcluir = document.createElement("button");
-    botaoConcluir.textContent = "Concluir";
-    botaoConcluir.onclick = () => {
-      tarefa.concluida = true;
-      mostrarTarefas();
-    };
-
-    // Botão de Desmarcar
-    const botaoDesmarcar = document.createElement("button");
-    botaoDesmarcar.textContent = "Desmarcar";
-    botaoDesmarcar.onclick = () => {
-      tarefa.concluida = false;
-      mostrarTarefas();
-    };
-
-    // Aplica estilo se estiver concluída
-    if (tarefa.concluida) {
-      item.classList.add("concluida");
-    }
-
-    // Adiciona os botões
-    item.appendChild(botaoConcluir);
-    item.appendChild(botaoDesmarcar);
-    lista.appendChild(item);
-  });
-}
-
-function mostrarConcluidas() {
-  const lista = document.getElementById("lista-tarefas");
-  lista.innerHTML = "";
-
-  tarefas.forEach((tarefa) => {
-    if (tarefa.concluida) {
-      const item = document.createElement("li");
-      item.textContent = tarefa.texto;
-      lista.appendChild(item);
-    }
-  });
 }
